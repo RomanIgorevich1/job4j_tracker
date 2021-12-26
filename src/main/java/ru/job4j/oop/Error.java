@@ -1,6 +1,10 @@
 package ru.job4j.oop;
 
 public class Error {
+    private boolean active;
+    private int status;
+    private String massage;
+
     public Error() {
     }
 
@@ -9,10 +13,6 @@ public class Error {
         this.status = status;
         this.massage = massage;
     }
-
-    private boolean active;
-    private int status;
-    private String massage;
 
     public void info() {
         System.out.println("2 + 2 = 4 " + active);
