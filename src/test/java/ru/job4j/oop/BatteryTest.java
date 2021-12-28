@@ -11,7 +11,7 @@ public class BatteryTest {
     public void whenThis30Another50ThenAnotherLoadEqual80() {
         Battery charger = new Battery(30);
         Battery another = new Battery(50);
-        another.exchange(charger);
+        charger.exchange(another);
         int expected = 80;
         assertThat(expected, is(another.getLoad()));
     }
@@ -20,16 +20,16 @@ public class BatteryTest {
     public void whenThis80Another20ThenThisLoadEqual100() {
         Battery charger = new Battery(80);
         Battery another = new Battery(20);
-        another.exchange(charger);
+        charger.exchange(another);
         int expected = 100;
         assertThat(expected, is(another.getLoad()));
     }
 
     @Test
-    public void whenThis95Another0ThenAnotherLoadEqual80() {
+    public void whenThis95Another0ThenAnotherLoadEqual95() {
         Battery charger = new Battery(95);
         Battery another = new Battery(0);
-        another.exchange(charger);
+        charger.exchange(another);
         int expected = 95;
         assertThat(expected, is(another.getLoad()));
     }
