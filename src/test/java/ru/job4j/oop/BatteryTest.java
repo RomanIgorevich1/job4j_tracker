@@ -33,4 +33,5 @@ public class BatteryTest {
         int expected = 95;
         assertThat(expected, is(another.getLoad()));
     }
+
 }
