@@ -16,11 +16,11 @@ public class Triangle {
     }
 
     public boolean exist(double ac, double ab, double bc) {
-        return (ac + bc) > ab || (bc + ab) > ac || (ac + ab) > bc;
+        return (ac + bc) > ab && (bc + ab) > ac && (ac + ab) > bc;
     }
 
     public double area() {
-        double s = 0;
+        double s = -1;
         double ab = first.distance(second);
         double ac = first.distance(third);
         double bc = second.distance(third);
