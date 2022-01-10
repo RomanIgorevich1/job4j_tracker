@@ -8,7 +8,7 @@ import org.junit.Test;
 public class PointTest {
 
     @Test
-    public void point() {
+    public void whenPoint0ThenDistance2() {
         Point a = new Point(0, 0);
         Point b = new Point(0, 2);
         double rsl = a.distance(b);
@@ -16,7 +16,7 @@ public class PointTest {
     }
 
     @Test
-    public void point2() {
+    public void whenPoint6ThenDistance5() {
         Point a = new Point(2, 4);
         Point b = new Point(6, 7);
         double rsl = a.distance(b);
