@@ -22,4 +22,20 @@ public class PointTest {
         double rsl = a.distance(b);
         assertThat(rsl, closeTo(5.0, 0.001));
     }
+
+    @Test
+    public void whenPoint2ThenDistance2() {
+        Point a = new Point(2, 2, 2);
+        Point b = new Point(2, 2, 4);
+        double rsl = a.distance3d(b);
+        assertThat(rsl, closeTo(2, 0.001));
+    }
+
+    @Test
+    public void whenPoint8ThenDistance7() {
+        Point a = new Point(2, 2, 2);
+        Point b = new Point(8, 5, 4);
+        double rsl = a.distance3d(b);
+        assertThat(rsl, closeTo(7, 0.001));
+    }
 }
