@@ -14,4 +14,13 @@ public class LicenseTest {
         second.setCode("Audi");
         assertThat(first, is(second));
     }
+
+    @Test
+    public void whenFirstEqSecond() {
+        License first = new License();
+        first.setModel("Toyota");
+        License second = new License();
+        second.setModel("Toyota");
+        assertThat(first, is(second));
+    }
 }
