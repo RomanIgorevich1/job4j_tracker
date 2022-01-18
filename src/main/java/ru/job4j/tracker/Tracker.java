@@ -49,27 +49,27 @@ public class Tracker {
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
-        if (index != -1) {
+        boolean rsl = index != -1;
+        if (rsl) {
             items[index].setName(item.getName());
-            return true;
-        } else {
-            return false;
         }
+        return rsl;
     }
 
     public boolean delete(int id) {
         int index = indexOf(id);
         int start = index + 1;
         int length = size - index - 1;
+        boolean rsl = index != -1;
         for (int i = 0; i < items.length; i++) {
-            if (index != -1) {
+            if (rsl) {
                 System.arraycopy(items, start, items, index, length);
                 items[items.length - 1] = null;
                 items[size - 1] = null;
                 size--;
-                return true;
+                break;
             }
         }
-        return false;
+        return rsl;
     }
 }
