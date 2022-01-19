@@ -52,19 +52,17 @@ public class Tracker {
         boolean rsl = index != -1;
         if (rsl) {
             items[index].setName(item.getName());
+            item.setId(id);
         }
-        return rsl;
+        return false;
     }
 
     public boolean delete(int id) {
         int index = indexOf(id);
-        int start = index + 1;
-        int length = size - index - 1;
         boolean rsl = index != -1;
         for (int i = 0; i < items.length; i++) {
             if (rsl) {
-                System.arraycopy(items, start, items, index, length);
-                items[items.length - 1] = null;
+                System.arraycopy(items, index + 1, items, index, size - index - 1);
                 items[size - 1] = null;
                 size--;
                 break;
