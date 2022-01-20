@@ -11,12 +11,22 @@ public class StartUi {
             System.out.println("Select:");
             int select = Integer.parseInt(scanner.nextLine());
             if (select == 0) {
-                System.out.println("===Create new Item===");
+                System.out.println("=== Create new Item ===");
                 System.out.println("Enter name: ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.add(item);
                 System.out.println("Заявка добавлена " + item);
+            } else if (select == 1) {
+                System.out.println("=== Show all items ===");
+                Item[] items = tracker.findAll();
+                if (items.length > 0) {
+                    for (Item item : items) {
+                    System.out.println(item);
+                    }
+                } else {
+                    System.out.println("Хранилище еще не содержит заявок.");
+                }
             } else if (select == 6) {
                 System.out.println("Пользователь выбрал " + select);
                 run = false;
