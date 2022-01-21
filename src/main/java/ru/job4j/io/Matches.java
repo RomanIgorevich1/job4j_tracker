@@ -13,11 +13,10 @@ public class Matches {
             System.out.println(players + " введите число от 1 до 3: ");
             int matches = Integer.parseInt(input.nextLine());
             turn = !turn;
-            for (int i = 0; i < count; i++) {
-                if (count > 0) {
-                    count -= matches;
-                    break;
-                }
+            if (matches > 3 || matches < 0 || matches > count) {
+                System.out.println("Ошибка. Недопустимое число");
+            } else {
+                count -= matches;
             }
         }
         if (!turn) {
