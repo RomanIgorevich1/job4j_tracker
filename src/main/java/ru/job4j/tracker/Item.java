@@ -22,13 +22,6 @@ public class Item {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" + "id=" + id
-                + ", name='" + name + '\''
-                + ", created=" + created.format(FORMATTER) + '}';
-    }
-
     public DateTimeFormatter getFORMATTER() {
         return FORMATTER;
     }
@@ -51,5 +44,12 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "id=" + id
+                + ", name='" + name + '\''
+                + ", created=" + created.format(FORMATTER) + '}';
     }
 }
