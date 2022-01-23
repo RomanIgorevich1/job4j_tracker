@@ -8,7 +8,7 @@ public class StartUi {
         boolean run = true;
         while (run) {
             showMenu();
-            System.out.print("Select:");
+            System.out.print("Select: ");
             int select = Integer.parseInt(scanner.nextLine());
             if (select == 0) {
                 System.out.println("=== Create new Item ===");
@@ -29,13 +29,16 @@ public class StartUi {
                 }
             } else if (select == 2) {
                 System.out.println("=== Edit item ===");
-                System.out.print("Enter id:");
+                System.out.print("Enter id: ");
                 int id = Integer.parseInt(scanner.nextLine());
-                System.out.print("Enter name");
+                System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
-                tracker.replace(id, item);
-                System.out.println("Заявка изменена успешно");
+                if (tracker.replace(id, item)) {
+                    System.out.println("Заявка изменена успешно.");
+                } else {
+                    System.out.println("Ошибка замены заявки.");
+                }
             } else if (select == 6) {
                 System.out.println("Пользователь выбрал " + select);
                 run = false;
