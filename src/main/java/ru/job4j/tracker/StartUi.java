@@ -12,7 +12,7 @@ public class StartUi {
             int select = Integer.parseInt(scanner.nextLine());
             if (select == 0) {
                 System.out.println("=== Create new Item ===");
-                System.out.println("Enter name: ");
+                System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.add(item);
@@ -29,9 +29,9 @@ public class StartUi {
                 }
             } else if (select == 2) {
                 System.out.println("=== Edit item ===");
-                System.out.println("Enter id:");
+                System.out.print("Enter id:");
                 int id = Integer.parseInt(scanner.nextLine());
-                System.out.println("Enter name");
+                System.out.print("Enter name");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.replace(id, item);
