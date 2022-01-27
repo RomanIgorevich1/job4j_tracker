@@ -10,6 +10,18 @@ public class StartUi {
         System.out.println("Заявка довавлена " + item);
     }
 
+    public static void showAllItem(Input input, Tracker tracker) {
+        System.out.println("=== Show all item ===");
+        Item[] items = tracker.findAll();
+        if(items.length > 0) {
+            for(Item item : items) {
+                System.out.println(item);
+            }
+        } else {
+            System.out.println("Хранилище еще не содержит заявок.");
+        }
+    }
+
     public static void editItem(Input input, Tracker tracker) {
         System.out.println("=== Edit Item ===");
         int id = input.askInt("Enter id: ");
@@ -64,15 +76,7 @@ public class StartUi {
             if (select == 0) {
                 StartUi.createItem(input, tracker);
             } else if (select == 1) {
-                System.out.println("=== Show all items ===");
-                Item[] items = tracker.findAll();
-                if (items.length > 0) {
-                    for (Item item : items) {
-                    System.out.println(item);
-                    }
-                } else {
-                    System.out.println("Хранилище еще не содержит заявок.");
-                }
+                StartUi.showAllItem(input, tracker);
             } else if (select == 2) {
                 StartUi.editItem(input, tracker);
             } else if (select == 3) {
@@ -82,7 +86,6 @@ public class StartUi {
             } else if (select == 5) {
                 StartUi.findItemByName(input, tracker);
             } else if (select == 6) {
-                System.out.println("Пользователь выбрал " + select);
                 run = false;
             }
         }
