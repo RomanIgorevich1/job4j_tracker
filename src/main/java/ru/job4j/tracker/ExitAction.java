@@ -9,8 +9,6 @@ public class ExitAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        System.out.println("=== Exit Program ===");
-        int exit = input.askInt("Exit ");
-        return exit != 6;
+        return false;
     }
 }
