@@ -8,8 +8,8 @@ public class BackArray {
         int middle = names.length / 2;
         for (int i = 0; i < names.length - 1; i++) {
             String temp = names[i];
-            names[i] = names[names.length - 1];
-            names[names.length - 1] = temp;
+            names[i] = names[names.length - 1 - i];
+            names[names.length - 1 - i] = temp;
         }
         System.out.println(Arrays.toString(names));
     }
