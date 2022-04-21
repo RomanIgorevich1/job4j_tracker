@@ -1,6 +1,11 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.ex.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.nullValue;
@@ -12,9 +17,11 @@ public class StartUiTest  {
         Output out = new StubOutput();
         Input in = new StubInput(new String[] {"0", "Item name", "1"});
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new CreateAction(out), new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        List<UserAction> list = new ArrayList<>();
+        list.add(new CreateAction(out));
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
+        assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
 
     @Test
@@ -24,8 +31,10 @@ public class StartUiTest  {
         Item item = tracker.add(new Item("Replace item"));
         String replacedName = "New item name";
         Input in = new StubInput(new String[] {"0", String.valueOf(item.getId()), "New item name", "1"});
-        UserAction[] actions = {new EditAction(out), new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
+        List<UserAction> list =  new ArrayList<>();
+        list.add(new EditAction(out));
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
 
@@ -35,8 +44,10 @@ public class StartUiTest  {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Delete item"));
         Input in = new StubInput(new String[] {"0", String.valueOf(item.getId()), "1"});
-        UserAction[] actions = {new DeleteAction(out), new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
+        List<UserAction> list = new ArrayList<>();
+        list.add(new DeleteAction(out));
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
@@ -45,10 +56,11 @@ public class StartUiTest  {
         Output out = new StubOutput();
         Input in = new StubInput(new String[] {"0"});
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
+        List<UserAction> list = new ArrayList<>();
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
         assertThat(out.toString(), is("Menu: " + System.lineSeparator()
-                + "0. Exit Program" + System.lineSeparator()));
+                + "Exit Program" + System.lineSeparator()));
     }
 
     @Test
@@ -58,17 +70,19 @@ public class StartUiTest  {
         Item one = tracker.add(new Item("test1"));
         String replaceName = "New item name";
         Input in = new StubInput(new String[] {"0", String.valueOf(one.getId()), replaceName, "1"});
-        UserAction[] actions = new UserAction[] {new EditAction(out), new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
+        List<UserAction> list = new ArrayList<>();
+        list.add(new EditAction(out));
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("Menu: " + ln
-                + "0. Edit item" + ln
-                + "1. Exit Program" + ln
+                + "Edit item" + ln
+                + "Exit Program" + ln
                 + "=== Edit item ===" + ln
                 + "Заявка изменена успешно." + ln
                 + "Menu: " + ln
-                + "0. Edit item" + ln
-                + "1. Exit Program" + ln));
+                + "Edit item" + ln
+                + "Exit Program" + ln));
     }
 
     @Test
@@ -78,18 +92,20 @@ public class StartUiTest  {
         Item one = tracker.add(new Item("test1"));
         Item two = tracker.add(new Item("test2"));
         Input in = new StubInput(new String[] {"0", "1"});
-        UserAction[] actions = new UserAction[]{new ShowAction(out), new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
+        List<UserAction> list = new ArrayList<>();
+        list.add(new ShowAction(out));
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("Menu: " + ln
-                + "0. Show all item" + ln
-                + "1. Exit Program" + ln
+                + "Show all item" + ln
+                + "Exit Program" + ln
                 + "=== Show all item ===" + ln
                 + one + ln
                 + two + ln
                 + "Menu: " + ln
-                + "0. Show all item" + ln
-                + "1. Exit Program" + ln));
+                + "Show all item" + ln
+                + "Exit Program" + ln));
     }
 
     @Test
@@ -98,17 +114,19 @@ public class StartUiTest  {
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
         Input in = new StubInput(new String[] {"0", one.getName(), "1"});
-        UserAction[] actions = new UserAction[] {new FindActionName(out), new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
+        List<UserAction> list = new ArrayList<>();
+        list.add(new FindActionName(out));
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("Menu: " + ln
-                + "0. Find item by name" + ln
-                + "1. Exit Program" + ln
+                + "Find item by name" + ln
+                + "Exit Program" + ln
                 + "=== Find item by Name ===" + ln
                 + one + ln
                 + "Menu: " + ln
-                + "0. Find item by name" + ln
-                + "1. Exit Program" + ln));
+                + "Find item by name" + ln
+                + "Exit Program" + ln));
     }
 
     @Test
@@ -117,17 +135,19 @@ public class StartUiTest  {
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
         Input in = new StubInput(new String[] {"0", String.valueOf(one.getId()), "1"});
-        UserAction[] actions = new UserAction[] {new FindActionId(out), new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
+        List<UserAction> list = new ArrayList<>();
+        list.add(new FindActionId(out));
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("Menu: " + ln
-                + "0. Find item by id" + ln
-                + "1. Exit Program" + ln
+                + "Find item by id" + ln
+                + "Exit Program" + ln
                 + "=== Find item by id ===" + ln
                 + one + ln
                 + "Menu: " + ln
-                + "0. Find item by id" + ln
-                + "1. Exit Program" + ln));
+                + "Find item by id" + ln
+                + "Exit Program" + ln));
     }
 
     @Test
@@ -135,13 +155,14 @@ public class StartUiTest  {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Input in = new StubInput(new String[] {"7", "0"});
-        UserAction[] actions = new UserAction[] {new ExitAction()};
-        new StartUi(out).init(in, tracker, actions);
+        List<UserAction> list = new ArrayList<>();
+        list.add(new ExitAction());
+        new StartUi(out).init(in, tracker, list);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("Menu: " + ln
-                + "0. Exit Program" + ln
+                + "Exit Program" + ln
                 + "Wrong input, you can select: 0 .. 0" + ln
                 + "Menu: " + ln
-                + "0. Exit Program" + ln));
+                + "Exit Program" + ln));
     }
 }
