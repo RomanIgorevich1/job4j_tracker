@@ -12,11 +12,7 @@ public class UniqueText {
             check.add(str);
         }
         for (String str : duplicate) {
-            if (check.contains(str)) {
-                break;
-            } else {
-                rsl = false;
-            }
+            return check.contains(str);
         }
         return rsl;
     }
