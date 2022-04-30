@@ -25,11 +25,15 @@ public class User implements Comparable<User> {
             return false;
         }
         User user = (User) obj;
-        return  age == user.age && Objects.equals(name, user.name);
+        return age == user.age && Objects.equals(name, user.name);
     }
 
     @Override
     public int compareTo(User o) {
-        return Integer.compare(age, o.age);
+        int rsl = this.name.compareTo(o.name);
+        if (rsl == 0) {
+            rsl = Integer.compare(age, o.age);
         }
+        return rsl;
     }
+}
