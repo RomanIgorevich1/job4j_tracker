@@ -11,16 +11,16 @@ public class JobTest {
     @Test
     public void whenCompareByNameAndPriority() {
         Comparator<Job> comp = new JobDescByName().thenComparing(new JobDescByPriority());
-        int rsl = comp.compare(new Job("Impl task", 0),
+        int rsl = comp.compare(new Job("Fix bugs", 0),
                 new Job("Fix bugs", 1));
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl, greaterThan(0));
     }
 
     @Test
     public void whenCompareAscByNameAndAscByPriority() {
-        Comparator<Job> comp = new JobAscByPriority().thenComparing(new JobAscByPriority());
-        int rsl = comp.compare(new Job("Impl task", 0),
-                new Job("Fix bugs", 1));
+        Comparator<Job> comp = new JobAscByName().thenComparing(new JobAscByPriority());
+        int rsl = comp.compare(new Job("Impl task", 1),
+                new Job("Impl task", 2));
         assertThat(rsl, lessThan(0));
     }
 
@@ -51,7 +51,7 @@ public class JobTest {
     @Test
     public void whenCompareAscByNameAndDescByPriority() {
         Comparator<Job> comp = new JobAscByName().thenComparing(new JobDescByPriority());
-        int rsl = comp.compare(new Job("Impl task", 0),
+        int rsl = comp.compare(new Job("Fix bugs", 0),
                 new Job("Fix bugs", 1));
         assertThat(rsl, greaterThan(0));
     }
