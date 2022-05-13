@@ -8,18 +8,23 @@ public class Departments {
      * добавляет пропущенные подразделения и сортирует их
      * @param deps список строк
      * @return возвращает новый лист
+     * и тут надо проверять - если start - пустая строка то пишем в нее el, иначе - добавляем слэш и конкатенируем el
      */
     public static List<String> fillGaps(List<String> deps) {
         Set<String> tmp = new LinkedHashSet<>();
         for (String value : deps) {
             String start = "";
             for (String el : value.split("/")) {
-                tmp.add(start + el);
-                tmp.add(value);
-                break;
+                if (start.equals("")) {
+                    tmp.add(el);
+                    start = el;
+                } else {
+                    tmp.add(start + "/" + el);
+                    start = "";
+                }
             }
         }
-        return new ArrayList<>(tmp);
+        return  new ArrayList<>(tmp);
     }
 
     /**
