@@ -1,12 +1,10 @@
 package ru.job4j.search;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertThrows;
 
 public class PhoneDictionaryTest {
     @Test
@@ -39,5 +37,13 @@ public class PhoneDictionaryTest {
         phone.add(new Person("Egor", "Sokolov", "Omsk", "123321"));
         ArrayList<Person> persons = phone.find("Roma");
         assertThat(persons.size(), is(0));
+    }
+
+    @Test
+    public void whenAgainFindByName() {
+        PhoneDictionary phoneDictionary = new PhoneDictionary();
+        phoneDictionary.add(new Person("Dmitriy", "Bybnov", "Minsk", "345543"));
+        ArrayList<Person> persons = phoneDictionary.find("Dmitriy");
+        assertThat(persons.get(0).getSurname(), is("Bybnov"));
     }
 }
