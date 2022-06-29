@@ -13,7 +13,7 @@ public class ListToMap {
                                   Student::getSurname,
                                   student -> student,
                                   (existing, replacement) -> existing,
-                                  LinkedHashMap :: new
+                                  LinkedHashMap::new
                           ));
     }
 }
