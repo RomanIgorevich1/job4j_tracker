@@ -21,4 +21,25 @@ public class ProfilesTest {
         List<Address> expected = Arrays.asList(one, two, three);
         assertEquals(result, expected);
     }
+
+    @Test
+    public void whenTestMethodCollectSortWithoutDuplicate() {
+        Address one = new Address("City1", "Street1", 1, 1);
+        Address two = new Address("City2", "Street2", 2, 2);
+        Address three = new Address("City3", "Street3", 3, 3);
+        Address four = new Address("City1", "Street1", 1, 1);
+        Address five = new Address("City2", "Street2", 2, 2);
+        Address six = new Address("City3", "Street3", 3, 3);
+        List<Profile> profiles = Arrays.asList(
+                new Profile(one),
+                new Profile(two),
+                new Profile(three),
+                new Profile(four),
+                new Profile(five),
+                new Profile(six));
+        List<Address> result = Profiles.collectSortWithoutDuplicate(profiles);
+        List<Address> expected = Arrays.asList(one, two, three);
+        assertEquals(result, expected);
+
+    }
 }
