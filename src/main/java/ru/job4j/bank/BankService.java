@@ -18,7 +18,7 @@ public class BankService {
      * @param user принимает объект класса User(нового пользователя).
      */
     public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<Account>());
+        users.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
@@ -45,12 +45,11 @@ public class BankService {
      * null если пользователь не найден.
      */
     public User findByPassport(String passport) {
-        for (User client : users.keySet()) {
-            if (client.getPassport().equals(passport)) {
-                return client;
-            }
-        }
-        return null;
+       return users.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -65,11 +64,10 @@ public class BankService {
         User client = findByPassport(passport);
         if (client != null) {
             List<Account> list = users.get(client);
-            for (Account acc : list) {
-                if (acc.getRequisite().equals(requisite)) {
-                    return acc;
-                }
-            }
+            return list.stream()
+                    .filter(user -> user.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
