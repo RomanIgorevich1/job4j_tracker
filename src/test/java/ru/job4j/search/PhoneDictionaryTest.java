@@ -1,11 +1,7 @@
 package ru.job4j.search;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-import ru.job4j.ooa.search.Person;
-import ru.job4j.ooa.search.PhoneDictionary;
-
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class PhoneDictionaryTest {
     @Test
@@ -13,7 +9,7 @@ public class PhoneDictionaryTest {
         var phone = new PhoneDictionary();
         phone.add(new Person("Petr", "Arsentev", "Bryansk", "54321"));
         var persons = phone.find("Petr");
-        assertThat(persons.get(0).getSurname(), is("Arsentev"));
+        assertThat(persons.get(0).getSurname()).isEqualTo("Arsentev");
     }
 
     @Test
@@ -21,7 +17,7 @@ public class PhoneDictionaryTest {
         var phone = new PhoneDictionary();
         phone.add(new Person("Roman", "Frolov", "Moskva", "12345"));
         var persons = phone.find("Moskva");
-        assertThat(persons.get(0).getAddress(), is("Moskva"));
+        assertThat(persons.get(0).getAddress()).isEqualTo("Moskva");
     }
 
     @Test
@@ -29,7 +25,7 @@ public class PhoneDictionaryTest {
         var phone = new PhoneDictionary();
         phone.add(new Person("Viktor", "Titov", "Tver", "98765"));
         var persons = phone.find("98765");
-        assertThat(persons.get(0).getPhone(), is("98765"));
+        assertThat(persons.get(0).getPhone()).isEqualTo("98765");
     }
 
     @Test
@@ -37,7 +33,7 @@ public class PhoneDictionaryTest {
         var phone = new PhoneDictionary();
         phone.add(new Person("Egor", "Sokolov", "Omsk", "123321"));
         var persons = phone.find("Roma");
-        assertThat(persons.size(), is(0));
+        assertThat(persons.size()).isEqualTo(0);
     }
 
     @Test
@@ -45,6 +41,6 @@ public class PhoneDictionaryTest {
         var phoneDictionary = new PhoneDictionary();
         phoneDictionary.add(new Person("Dmitriy", "Bybnov", "Minsk", "345543"));
         var persons = phoneDictionary.find("Dmitriy");
-        assertThat(persons.get(0).getSurname(), is("Bybnov"));
+        assertThat(persons.get(0).getSurname()).isEqualTo("Bybnov");
     }
 }
