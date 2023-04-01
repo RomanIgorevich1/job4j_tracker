@@ -1,9 +1,6 @@
 package ru.job4j.tracker;
-
-import org.junit.Test;
-
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 public class ValidateInputTest {
 
@@ -13,7 +10,7 @@ public class ValidateInputTest {
         Input in = new StubInput(new String[] {"one", "1"});
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu: ");
-        assertThat(selected, is(1));
+        assertThat(selected).isEqualTo(1);
     }
 
     @Test
@@ -24,9 +21,9 @@ public class ValidateInputTest {
         int selected = input.askInt("Enter menu: ");
         int selected1 = input.askInt("Enter menu: ");
         int selected2 = input.askInt("Enter menu: ");
-        assertThat(selected, is(1));
-        assertThat(selected1, is(2));
-        assertThat(selected2, is(3));
+        assertThat(selected).isEqualTo(1);
+        assertThat(selected1).isEqualTo(2);
+        assertThat(selected2).isEqualTo(3);
     }
 
     @Test
@@ -35,7 +32,7 @@ public class ValidateInputTest {
         Input in = new StubInput(new String[] {"1"});
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu: ");
-        assertThat(selected, is(1));
+        assertThat(selected).isEqualTo(1);
     }
 
     @Test
@@ -44,6 +41,6 @@ public class ValidateInputTest {
         Input in = new StubInput(new String[] {"-2"});
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu: ");
-        assertThat(selected, is(-2));
+        assertThat(selected).isEqualTo(-2);
     }
 }
