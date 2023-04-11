@@ -96,7 +96,8 @@ public class SqlTracker implements Store {
             try (ResultSet resultSet = statement.getResultSet()) {
                 while (resultSet.next()) {
                     itemList.add(new Item(resultSet.getInt("id"),
-                            resultSet.getString("name")));
+                            resultSet.getString("name"),
+                            resultSet.getTimestamp("created").toLocalDateTime()));
                 }
             }
         } catch (SQLException exception) {
