@@ -12,7 +12,7 @@ public class MaxMin {
         return getResult(value, comparator);
     }
 
-    public <T> T getResult(List<T> listOfNumber, Comparator<T> comparator) {
+    private <T> T getResult(List<T> listOfNumber, Comparator<T> comparator) {
         listOfNumber.sort(comparator);
         return listOfNumber.get(0);
     }
