@@ -1,4 +1,5 @@
 package ru.job4j.tracker;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,6 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartUiTest  {
+
+    @AfterEach
+    public void deleteTable() throws SQLException {
+        Store memTracker = new SqlTracker();
+        for (Item item : memTracker.findAll()) {
+            memTracker.delete(item.getId());
+        }
+    }
 
     @Test
     public void whenCreateItem() throws SQLException {
