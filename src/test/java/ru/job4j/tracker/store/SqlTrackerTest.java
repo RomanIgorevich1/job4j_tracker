@@ -1,6 +1,5 @@
 package ru.job4j.tracker.store;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -22,7 +21,8 @@ public class SqlTrackerTest {
 
     @BeforeAll
     public static void initConnection() {
-        try (InputStream inputStream = new FileInputStream("db/liquibase_test.properties")) {
+        try (InputStream inputStream = SqlTracker.class.getClassLoader()
+                .getResourceAsStream("db/liquibase_test.properties")) {
             Properties config = new Properties();
             config.load(inputStream);
             Class.forName(config.getProperty("driver-class-name"));

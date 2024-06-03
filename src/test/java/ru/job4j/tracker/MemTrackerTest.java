@@ -35,7 +35,9 @@ public class MemTrackerTest {
         String ln = System.lineSeparator();
         assertThat(output.toString()).isEqualTo(
                 "=== Find item by id ===" + ln
-                        + "Заявка с введенным id: " + new Item().getId() + " не найдена." + ln);
+                        + "Заявка с введенным id: " + new Item().getId()
+
+                        + " не найдена." + ln);
     }
 
     @Test

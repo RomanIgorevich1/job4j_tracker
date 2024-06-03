@@ -34,7 +34,7 @@ public class StartUi {
     }
 
     public static void main(String[] args) {
-       Output output = new ConsoleOutput();
+        Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         try (Store tracker = new SqlTracker()) {
             List<UserAction> actions = new ArrayList<>();
